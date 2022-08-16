@@ -31,7 +31,7 @@
     border-bottom-left-radius: $column-border-radius;
     border-bottom-right-radius: $column-border-radius;
   }
-  ul.task-list {
+  ul.card-list {
     list-style-type: none;
     margin: 0;
     max-height: calc(
@@ -49,7 +49,7 @@
       border-right: $column-border-radius solid $list-bg-color;
     }
 
-    li.task-item {
+    li.card-item {
       background-color: #fff;
       padding: $gap;
       border-radius: $card-border-radius;
