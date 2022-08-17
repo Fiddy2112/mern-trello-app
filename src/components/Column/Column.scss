@@ -14,7 +14,7 @@ $card-list-height: calc(
 
   > * {
     background-color: $list-bg-color;
-    color: #333;
+
     padding: 0 8px;
   }
 
@@ -35,6 +35,16 @@ $card-list-height: calc(
     line-height: $column-footer-height;
     border-bottom-left-radius: $column-border-radius;
     border-bottom-right-radius: $column-border-radius;
+    color: #888;
+
+    .footer-actions {
+      margin-left: $gap;
+      cursor: pointer;
+
+      &:hover {
+        color: $app-main-text-color;
+      }
+    }
   }
   .card-list {
     margin: 0;
@@ -54,6 +64,7 @@ $card-list-height: calc(
     .card-ghost {
       transition: transform 0.18s ease;
       transform: rotateZ(5deg);
+      font-weight: bold;
     }
 
     .card-ghost-drop {
