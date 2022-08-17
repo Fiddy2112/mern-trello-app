@@ -1,14 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap");
 
-$board-bg-color: #0079bf;
-$appbar-bg-color: #0067a3;
-$list-bg-color: #ebecf0;
 $gap: 10px;
 $column-header-height: 36px;
 $column-footer-height: 36px;
 $column-border-radius: 5px;
 $card-border-radius: 4px;
+
+// Height: appBar + boardBar + boardContent = 99vh, 1vh for scrollbar
+$navbar-app-height: 5vh;
+$navbar-board-height: 6vh;
+$board-content-height: 88vh;
+
+//colors
 $common-element-bg: rgba(225, 225, 225, 0.3);
+$board-bg-color: #0079bf;
+$appbar-bg-color: #0067a3;
+$list-bg-color: #ebecf0;
 
 //Screen
 $screen-lg: 1201px;
