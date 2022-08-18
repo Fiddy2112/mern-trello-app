@@ -21,7 +21,6 @@ function BoardContent() {
   const [columns, setColumns] = useState([]);
   const [openNewColumnForm, setOpenNewColumnForm] = useState(false);
   const [newColumnTitle, setNewColumnTitle] = useState("");
-
   const newColumnInputRef = useRef(null);
 
   useEffect(() => {
@@ -54,6 +53,10 @@ function BoardContent() {
     return <BoardNotFound />;
   }
 
+  const toggleOpenNewColumnForm = () => {
+    setOpenNewColumnForm(!openNewColumnForm);
+  };
+
   const onColumnDrop = (dropResult) => {
     // drag the column
     let newColumns = [...columns];
@@ -79,10 +82,6 @@ function BoardContent() {
 
       setColumns(newColumns);
     }
-  };
-
-  const toggleOpenNewColumnForm = () => {
-    setOpenNewColumnForm(!openNewColumnForm);
   };
 
   const addNewColumn = () => {
@@ -127,6 +126,7 @@ function BoardContent() {
       newColumns.splice(columnIndexToUpdate, 1);
     } else {
       //update column
+      console.log(newColumnToUpdate);
       newColumns.splice(columnIndexToUpdate, 1, newColumnToUpdate);
     }
 
@@ -189,7 +189,7 @@ function BoardContent() {
                 Add Column
               </Button>
               <span
-                className="cancel-new-column"
+                className="cancel-icon"
                 onClick={() => setOpenNewColumnForm(!openNewColumnForm)}
               >
                 <i className="fa fa-times icon"></i>

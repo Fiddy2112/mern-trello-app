@@ -85,6 +85,7 @@ $card-list-height: calc(
   footer {
     padding-left: $gap;
     height: $column-footer-height;
+    min-height: 10px;
     line-height: $column-footer-height;
     border-bottom-left-radius: $column-border-radius;
     border-bottom-right-radius: $column-border-radius;
@@ -129,6 +130,13 @@ $card-list-height: calc(
       background-color: rgba(150, 150, 200, 0.1);
       border: 1px dashed #abc;
       margin: 5px;
+    }
+
+    .add-new-card-area {
+      .textarea-enter-new-card {
+        min-height: 54px;
+        max-height: 162px;
+      }
     }
   }
 }
