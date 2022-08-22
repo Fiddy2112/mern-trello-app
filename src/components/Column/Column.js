@@ -28,7 +28,7 @@ function Column(props) {
   const [columnTitle, setColumnTitle] = useState("");
   const handleColumnTitleChange = (e) => setColumnTitle(e.target.value);
 
-  const cards = mapOrder(column.cards, column.cardOrder, "id");
+  const cards = mapOrder(column.cards, column.cardOrder, "_id");
   const newCardTextareaRef = useRef(null);
 
   const onConfirmModalAction = (action) => {
@@ -66,14 +66,14 @@ function Column(props) {
     const newCardToAdd = {
       id: `card-${Math.random().toString(36).substr(2, 5)}`, // 5 random characters, will remove when implement code api
       boardId: column.boardId,
-      columnId: column.id,
+      columnId: column._id,
       title: newCardTitle.trim(),
       cover: null,
     };
 
     let newColumn = cloneDeep(column);
     newColumn.cards.push(newCardToAdd);
-    newColumn.cardOrder.push(newCardToAdd.id);
+    newColumn.cardOrder.push(newCardToAdd._id);
 
     // update the column
     onUpdateColumn(newColumn);
@@ -135,7 +135,7 @@ function Column(props) {
         <Container
           orientation="vertical"
           groupName="col"
-          onDrop={(dropResult) => onCardDrop(column.id, dropResult)}
+          onDrop={(dropResult) => onCardDrop(column._id, dropResult)}
           getChildPayload={(index) => cards[index]}
           dragClass="card-ghost"
           dropClass="card-ghost-drop"
