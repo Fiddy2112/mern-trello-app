@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { fetchBoardDetails } from "actions/ApiCall";
+import { fetchBoardDetails, createNewColumn } from "actions/ApiCall";
 import { Container, Draggable } from "react-smooth-dnd";
 import Column from "components/Column/Column";
 import BoardNotFound from "components/NotFound/BoardNotFound/BoardNotFound";
@@ -89,30 +89,30 @@ function BoardContent() {
       return;
     }
     const newColumnToAdd = {
-      id: `column-${Math.random().toString(36).substr(2, 5)}`, // 5 random characters, will remove when implement code api
       boardId: board._id,
       title: newColumnTitle.trim(),
-      cardOrder: [],
-      cards: [],
     };
-    let newColumns = [...columns];
-    newColumns.push(newColumnToAdd);
+    // Call API
+    createNewColumn(newColumnToAdd).then((column) => {
+      let newColumns = [...columns];
+      newColumns.push(column);
 
-    // update the board(columnsOrder)
-    let newBoard = { ...board };
-    newBoard.columnOrder = newColumns.map((c) => c._id);
-    // async boardColumnOrder & boardColumns
-    newBoard.columns = newColumns;
+      // update the board(columnsOrder)
+      let newBoard = { ...board };
+      newBoard.columnOrder = newColumns.map((c) => c._id);
+      // async boardColumnOrder & boardColumns
+      newBoard.columns = newColumns;
 
-    setColumns(newColumns);
-    setBoard(newBoard);
+      setColumns(newColumns);
+      setBoard(newBoard);
 
-    // reset characters newColumnTitle
-    setNewColumnTitle("");
-    toggleOpenNewColumnForm();
+      // reset characters newColumnTitle
+      setNewColumnTitle("");
+      toggleOpenNewColumnForm();
+    });
   };
 
-  const onUpdateColumn = (newColumnToUpdate) => {
+  const onUpdateColumnState = (newColumnToUpdate) => {
     // edit & remove column
     const columnIdToUpdate = newColumnToUpdate._id;
 
@@ -157,7 +157,7 @@ function BoardContent() {
             <Column
               column={column}
               onCardDrop={onCardDrop}
-              onUpdateColumn={onUpdateColumn}
+              onUpdateColumnState={onUpdateColumnState}
             />
           </Draggable>
         ))}
