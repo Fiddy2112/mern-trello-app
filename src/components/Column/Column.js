@@ -47,8 +47,6 @@ function Column(props) {
   };
   // Update column
   const handleColumnTitleBlur = () => {
-    console.log(column.title);
-    console.log(columnTitle);
     if (column.title !== columnTitle) {
       // update column
       const newColumn = {
